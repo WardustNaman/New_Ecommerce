@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <%= image_tag("eco", size: "65x45") %>
+    <a class="navbar-brand" href="#">Ecommerce</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <%= link_to "Home", say_hello_path, class: "nav-link"%>
+          <span class="sr-only">(current)</span>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Products", products_path, class: "nav-link"%>
+        </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li> -->
+            <li class="nav-item dropdown <%= controller.controller_name == 'categories' ? 'active' : ''%>">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categories
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+               <% Category.all.each do |category| %>
+               <!-- <a class="dropdown-item" href="#">Action</a> -->
+               <%= link_to category.name, category, class: 'dropdown-item' %>
+               <% end %>
+             </div>
+           </li>
+           <li class="nav-item">
+            <% if user_signed_in? %> 
+            <%= link_to "Your Cart(#{current_user.cart_line_items.pluck(:quantity).inject(:+)})", cart_line_items_path, class: "nav-link" %>
+            <li><%= link_to "Your Wishlist(#{current_user.wishlist_items.count})", wishlist_items_path, class: "nav-link" %></li>
+            <li><%= link_to "Your Orders(#{current_user.orders.count})", orders_path, class: "nav-link" %></li>
+            <%= link_to "Addresses", addresses_path, class: "nav-link" %>
+            <li><%= link_to "Account Settings", edit_user_registration_path, class: "nav-link" %></li>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %> 
+            <% else %>
+            <%= link_to "Register", new_user_registration_path, class: "nav-link" %><li><%= link_to "Login", new_user_session_path, class: "nav-link" %></li>  
+            <% end %>
+          </li>
+           <!-- Welcome <%#= current_user.email %> -->
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="mb-4"></div>

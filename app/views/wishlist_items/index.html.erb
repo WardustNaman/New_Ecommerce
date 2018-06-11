@@ -1,0 +1,31 @@
+<h2>Your Wishlist</h2>
+<% if (@wishlist_items.empty?) %>
+	<p>Your wishlist is empty. Shop <%= link_to "here", products_path %></p>
+<% else %>
+<table border="1"> 
+<thead>
+	<tr>
+		<th> # </th>
+		<th> Name </th>
+		<th> Price </th>
+		<th> Remove </th>
+		<th> Move to Cart</th>
+	</tr>
+</thead>
+<tbody>
+	<% @wishlist_items.each_with_index do |wishlist_item, index| %>
+	<tr>
+		<td><%= index + 1 %></td>
+		<td><%= link_to wishlist_item.product.name, wishlist_item.product, target: "_blank" %></td>
+		<td><%= wishlist_item.product.price %></td>
+		<td><%= link_to "delete", wishlist_item_path(wishlist_item),method: :delete,data: {confirm: "Are you sure?"} %></td>
+		<td><%= form_for wishlist_item do |f|%>
+        <%= f.submit "Move to Cart"%> 
+        	<% end %></td>
+	</tr>
+	<% end %>
+</tbody>
+</table>
+<% end %>
+
+

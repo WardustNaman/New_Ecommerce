@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Addresses</h1>
+
+<div class="row">
+      <div class="col-lg-4">
+        <h2>Add Address</h2>
+        <%= render 'form', address: @address%>
+      </div>
+          <% @addresses.each do |address| %>
+        <div class="col-lg-4">
+          <div class="card h-80">
+            <div class="card-body">
+              <h4 class="card-title">
+                <%= link_to "#{address.name}", address %></h4>
+                <p class="card-text"><h4> Address - <%= address.details %>,<%= address.street %></h4>
+                <h5> Landmark - <%= address.landmark %></h5>
+                (<%= address.pincode %>)</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted"><%= address.city %>,<%= address.state %></small>
+              </div>
+            </div>
+          </div>
+          <%end%>
+        </div>
+      <!-- /.row -->
+<!-- <table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Details</th>
+      <th>State</th>
+      <th>Street</th>
+      <th>Landmark</th>
+      <th>City</th>
+      <th>Pincode</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# @addresses.each do |address| %>
+      <tr>
+        <td><%#= link_to "#{address.name}", address %></td>
+        <td><%#= address.details %></td>
+        <td><%#= address.state %></td>
+        <td><%#= address.street %></td>
+        <td><%#= address.landmark %></td>
+        <td><%#= address.city %></td>
+        <td><%#= address.pincode %></td>
+ -->     
+      <!-- </tr>
+    <%# end %>
+  </tbody>
+</table> -->
+
+<!-- <br> -->
+
+<%#= link_to 'New Address', new_address_path %>

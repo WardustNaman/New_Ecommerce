@@ -1,0 +1,37 @@
+<h2>Listing Categories (<%= @categories.length %>)</h2>
+<br/>
+<% if @categories.empty? %>
+    <p>No Categories</p>
+    <% else %>
+<ol>
+        <div class="row">
+             <% @categories.each do |category| %>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <%= link_to category.name, category%></h4>
+                  <p class="card-text"><%= category.description %></p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted"> <%= category.name%> has (<%= category.products.count %>) products</small>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        <!-- <%#= link_to category.name, category_path(category.id) %> - (<%#= category.products.count %>) -->
+</ol>
+<% end %>
+<%# if user_signed_in? %>
+<%#= link_to "Add Categories", new_category_path%>
+<%# end %>
+
+
+
+
+
+
+
+
+ 

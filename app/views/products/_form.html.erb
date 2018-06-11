@@ -1,0 +1,47 @@
+<%= form_for @product do |f| %>
+<% if @product.errors.any? %>
+<h3>These errors prohibited the form from being saved:</h3>
+<ul>
+	<% @product.errors.full_messages.each do |msg| %>
+	<li><%= msg %></li>
+	<% end %>
+
+<% end %>
+</ul>
+<label> <for="product_category_id"> Category : </label><br/>
+<%= f.collection_select :category_id, Category.all, :id, :name, prompt: "Select Category" %> <br/>
+
+<label> <for= "product_name"> Name : </label><br/>
+<%= f.text_field :name, placeholder: "enter name" %> <span id="nameMsg"></span><br/>
+
+<label> <for= "product_description"> Description : </label><br/>
+<%= f.text_field :description %> <br/>
+
+<label> <for= "product_feature_image_url"> Image : </label><br/>
+<%= f.text_field :feature_image_url %> <br/>
+
+<label> <for= "product_price"> Price : </label><br/>
+<%= f.number_field :price, min: 1 %> <br/>
+
+<label> <for= "product_stock"> Stock : </label><br/>
+<%= f.number_field :stock, min: 0 %> <br/>
+
+<%= f.submit %>
+<% end %>
+
+<script>
+	var nameHandle = document.getElementById("product_name")
+	var nameMsgHandle = document.getElementById("nameMsg")
+
+	nameHandle.addEventListener("focus", fuction(){
+		nameMsgHandle.innerHTML = "enter the product name"
+	}, false);
+
+	nameHandle.addEventListener("blur" fuction(){
+		if(nameHandle.value == ""){
+		nameMsgHandle.innerHTML = "cant be blank";
+	}
+	else{
+		nameMsgHandle.innerHTML="";
+	}, false)
+</script>
