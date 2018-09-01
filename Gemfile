@@ -14,7 +14,7 @@ gem 'cancancan'
 gem 'bootstrap-will_paginate'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
