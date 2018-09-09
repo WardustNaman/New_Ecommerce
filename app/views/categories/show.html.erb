@@ -31,4 +31,5 @@
           <%end%>
 <%= link_to "Categories list",categories_path %></br>
 </br>
-<p><% if user_signed_in? %><%= link_to "edit", edit_category_path(@category.id) %> | <%= link_to "delete", category_path(@category.id), method: :delete, data: {confirm: "Are you sure? "}%> <% end %></p>
+<% if (user_signed_in?) && (can? :create, Category.new)%>
+<p><%= link_to "edit", edit_category_path(@category.id) %> | <%= link_to "delete", category_path(@category.id), method: :delete, data: {confirm: "Are you sure? "}%> </p><% end %>
